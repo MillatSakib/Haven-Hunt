@@ -5,6 +5,8 @@ import Tamplate from "./Tamplate.jsx";
 import Home from "./Home/Home.jsx";
 import UpdateProfile from "./UpdateProfile/updateProfile.jsx";
 import CartEstate from "./CartEstate/CartEstate.jsx";
+import Login from "./Auth/Login.jsx";
+import Register from "./Auth/Register.jsx";
 
 const PublicRotes = () => {
   const routes = createBrowserRouter([
@@ -22,8 +24,16 @@ const PublicRotes = () => {
           element: <UpdateProfile></UpdateProfile>,
         },
         {
-          path: "//cart_estate",
+          path: "/cart_estate",
           element: <CartEstate></CartEstate>,
+        },
+        {
+          path: "/login",
+          element: <Login></Login>,
+        },
+        {
+          path: "/register",
+          element: <Register></Register>,
         },
       ],
     },
