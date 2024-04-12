@@ -1,12 +1,9 @@
-# Note: Please rename the .gitignore(rename) file to .gitignore so that git ignore all the packages.
+# Haven Hunt
 
-## Installed Package
+Live Site Link: [https://real-estate-ph.netlify.app/](https://real-estate-ph.netlify.app/)
 
-- Tailwind
-- DaisyUI
-- React Router
-- React tabs
-- React Icons
-- Rechart
-- firebase
-- Helmet
+## Package used for complete challenge part
+
+- AOS Package
+- React Hook Form
+- Swiper Slider
