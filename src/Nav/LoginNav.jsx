@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../AuthProvider";
 
 const LoginNav = () => {
-  const user = {};
+  const { user, logOut } = useContext(AuthContext);
+  // console.log(user);
 
   return (
-    <div className="flex items-center gap-2">
+    <div className={user ? "flex items-center gap-2" : "hidden"}>
       <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
         <div tabIndex={0} role="button">
           <div className="avatar">
@@ -24,11 +26,15 @@ const LoginNav = () => {
           tabIndex={0}
           className="dropdown-content z-[99] menu p-2 shadow bg-base-100 rounded-box w-max"
         >
-          <li className="px-4 py-2">Md. Sohan Millat Sakib</li>
-          <li className="px-4 py-2">millatsakib01@gmail.com</li>
+          <li className="px-4 py-2">
+            {user?.displayName ? user.displayName : "No data found."}
+          </li>
+          {/* <li className="px-4 py-2">millatsakib01@gmail.com</li> */}
         </ul>
       </div>
-      <button className="btn btn-error text-white">Logout</button>
+      <button className="btn btn-error text-white" onClick={logOut}>
+        Logout
+      </button>
     </div>
   );
 };

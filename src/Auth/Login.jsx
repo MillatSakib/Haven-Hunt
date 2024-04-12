@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { NavLink } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../AuthProvider";
 
 const Login = () => {
   const [passError, setPassError] = useState("");
   const [showPass, setShowPass] = useState(true);
-  const logInUser = {};
-  const GoogleSignIn = {};
-  const githubSignIn = {};
-  const tweeterLogin = {};
-  //  const { logInUser, GoogleSignIn, user, user, tweeterLogin } = useContext(AuthContext);
+  // const logInUser = {};
+  // const GoogleSignIn = {};
+  // const githubSignIn = {};
+  const { logInUser, GoogleSignIn, user, githubSignIn } =
+    useContext(AuthContext);
   // const location = useLocation();
   // console.log(location);
   // const navigate = useNavigate();
@@ -152,18 +153,6 @@ const Login = () => {
                   />
                 </span>{" "}
                 <span>Continue with Github</span>
-              </button>
-              <button
-                onClick={tweeterLogin}
-                className="btn border-[1px] border-slate-400 w-full flex gap-4  max-w-[400px] mx-auto"
-              >
-                <span>
-                  <img
-                    src="https://i.ibb.co/dLGLw79/Logo-of-Twitter.png"
-                    className="h-6 w-6"
-                  />
-                </span>{" "}
-                <span>Continue with Twitter</span>
               </button>
             </div>
           </div>

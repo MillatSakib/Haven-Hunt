@@ -3,16 +3,18 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { NavLink } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-// import AuthProvider, { AuthContext } from "../../AuthProvider";
+import { AuthContext } from "../AuthProvider";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../firebase.config";
 
 const Register = () => {
   const [passError, setPassError] = useState("");
   const [showPass, setShowPass] = useState(true);
-  //   const { registerUser } = useContext(AuthContext);
-  const registerUser = {};
+  const { registerUser } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
+    const imgUrl = e.target.imgUrl.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(name, email, password);
@@ -33,7 +35,24 @@ const Register = () => {
       return;
     }
     setPassError("");
-    registerUser(email, password);
+    registerUser(email, password).then((userCredential) => {
+      // Signed up
+      const user = userCredential.user;
+      updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: imgUrl,
+      })
+        .then(() => {
+          // Profile updated!
+          // ...
+        })
+        .catch((error) => {
+          // An error occurred
+          // ...
+        });
+      console.log(user);
+      // setUseEffectRunner(!useEffectRunner);
+    });
     // .then((result) => {
     //   console.log(result);
     // })
