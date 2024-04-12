@@ -4,11 +4,13 @@ import App from "./App.jsx";
 import "./index.css";
 import { Router, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Nav from "./Nav.jsx";
+import NotFoundPage from "./ErroPage/NotFound.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement: <NotFoundPage></NotFoundPage>,
     children: [
       {
         path: "/",
