@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import LoginNav from "./LoginNav";
+import LogoutNav from "./LogoutNav";
 // import { AuthContext } from "../AuthProvider";
 
 const Nav = () => {
@@ -32,13 +34,19 @@ const Nav = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/" className="font-semibold">
+                  Home
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/update_profile">Update Profile</NavLink>
+                <NavLink to="/update_profile" className="font-semibold">
+                  Update Profile
+                </NavLink>
               </li>
               <li>
-                <a>Item 3</a>
+                <NavLink to="/cart_estate" className="font-semibold">
+                  Cart Estate
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -53,37 +61,26 @@ const Nav = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/" className="font-semibold">
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/update_profile">Update Profile</NavLink>
+              <NavLink to="/update_profile" className="font-semibold">
+                Update Profile
+              </NavLink>
             </li>
 
             <li>
-              <NavLink to="/cart_estate">Cart Estate</NavLink>
+              <NavLink to="/cart_estate" className="font-semibold">
+                Cart Estate
+              </NavLink>
             </li>
           </ul>
         </div>
         <div className="navbar-end gap-2 mr-0 md:mr-4">
-          <NavLink to="/login" className="btn btn-success text-white">
-            Login
-          </NavLink>
-
-          <div className="avatar">
-            <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img
-                src={
-                  user?.photoURL
-                    ? user.photoURL
-                    : "https://millatsakib.github.io/Project-Resource/%E2%80%94Pngtree%E2%80%94cartoon%20color%20simple%20male%20avatar_5230557.png"
-                }
-              />
-              <div>{user?.photoURL}</div>
-            </div>
-          </div>
-          <button className="btn btn-error text-white" onClick={logOut}>
-            Logout
-          </button>
+          <LogoutNav />
+          <LoginNav></LoginNav>
         </div>
       </div>
     </div>
