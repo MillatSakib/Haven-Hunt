@@ -24,12 +24,8 @@ const LoginNav = () => {
           tabIndex={0}
           className="dropdown-content z-[99] menu p-2 shadow bg-base-100 rounded-box w-max"
         >
-          <li>
-            <a>millatsakiub01@gmail.com</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
+          <li className="px-4 py-2">Md. Sohan Millat Sakib</li>
+          <li className="px-4 py-2">millatsakib01@gmail.com</li>
         </ul>
       </div>
       <button className="btn btn-error text-white">Logout</button>

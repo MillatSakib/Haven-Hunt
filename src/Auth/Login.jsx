@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { NavLink } from "react-router-dom";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [passError, setPassError] = useState("");
+  const [showPass, setShowPass] = useState(true);
   const logInUser = {};
   const GoogleSignIn = {};
   const githubSignIn = {};
@@ -74,16 +77,32 @@ const Login = () => {
                     required
                   />
                 </div>
-                <div className="form-control">
+                <div className="form-control relative">
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
                   <input
                     name="password"
-                    type="password"
+                    type={showPass ? "password" : "text"}
                     placeholder="Password"
                     className="input input-bordered"
                     required
+                  />
+                  <FaRegEye
+                    className={
+                      showPass
+                        ? "absolute right-4 top-[3.2rem] hover:cursor-pointer select-none"
+                        : "hidden"
+                    }
+                    onClick={() => setShowPass(!showPass)}
+                  />
+                  <FaRegEyeSlash
+                    className={
+                      showPass
+                        ? "hidden"
+                        : "absolute right-4 top-[3.2rem] hover:cursor-pointer select-none"
+                    }
+                    onClick={() => setShowPass(!showPass)}
                   />
                   <div
                     className={
