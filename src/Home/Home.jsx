@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { AuthContext } from "../AuthProvider";
+import SwipeBanner from "./SwipeBanner";
 
 function Home() {
   const { routeState } = useContext(AuthContext);
@@ -16,6 +17,8 @@ function Home() {
       <Helmet>
         <title>Haven Hunt - Home</title>
       </Helmet>
+
+      <SwipeBanner></SwipeBanner>
       <>This is home</>
     </HelmetProvider>
   );
