@@ -7,6 +7,7 @@ import UpdateProfile from "./UpdateProfile/updateProfile.jsx";
 import CartEstate from "./CartEstate/CartEstate.jsx";
 import Login from "./Auth/Login.jsx";
 import Register from "./Auth/Register.jsx";
+import PrivateRoutes from "./PrivateRoutes/MainPrivateRoutes.jsx";
 
 const PublicRotes = () => {
   const routes = createBrowserRouter([
@@ -21,11 +22,19 @@ const PublicRotes = () => {
         },
         {
           path: "/update_profile",
-          element: <UpdateProfile></UpdateProfile>,
+          element: (
+            <PrivateRoutes>
+              <UpdateProfile></UpdateProfile>
+            </PrivateRoutes>
+          ),
         },
         {
           path: "/cart_estate",
-          element: <CartEstate></CartEstate>,
+          element: (
+            <PrivateRoutes>
+              <CartEstate></CartEstate>
+            </PrivateRoutes>
+          ),
         },
         {
           path: "/login",

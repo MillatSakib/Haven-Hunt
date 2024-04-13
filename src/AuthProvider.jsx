@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createContext } from "react";
 import { auth } from "./firebase.config";
 import { updateProfile } from "firebase/auth";
+import { toast } from "react-toastify";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -11,8 +12,8 @@ import {
 } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
-import { TwitterAuthProvider } from "firebase/auth";
 import { useAsyncError } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AuthContext = createContext(null);
 
@@ -48,11 +49,19 @@ const AuthProvider = ({ children }) => {
         const user = userCredential.user;
         // ...
         console.log(user);
+        toast.success("Successfully logged in!", {
+          position: "bottom-right", // Adjust position as needed
+          autoClose: 5000, // Close after 5 seconds
+          hideProgressBar: false, // Optionally hide progress bar
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        toast.error(errorMessage, {
+          position: "bottom-right", // Adjust position as needed
+        });
       });
   };
 
@@ -63,9 +72,17 @@ const AuthProvider = ({ children }) => {
         const loginUser = result.user;
         setUser(loginUser);
         console.log(loginUser);
+        toast.success("Successfully logged in!", {
+          position: "bottom-right", // Adjust position as needed
+          autoClose: 5000, // Close after 5 seconds
+          hideProgressBar: false, // Optionally hide progress bar
+        });
       })
       .catch((error) => {
         console.log("error", error.message);
+        toast.error(errorMessage, {
+          position: "bottom-right", // Adjust position as needed
+        });
       });
   };
 
@@ -83,6 +100,11 @@ const AuthProvider = ({ children }) => {
         const githubuser = result.user;
         // IdP data available using getAdditionalUserInfo(result)
         setUser(githubuser);
+        toast.success("Successfully logged in!", {
+          position: "bottom-right", // Adjust position as needed
+          autoClose: 5000, // Close after 5 seconds
+          hideProgressBar: false, // Optionally hide progress bar
+        });
         // console.log(githubUsr);
         // ...
       })
@@ -94,6 +116,9 @@ const AuthProvider = ({ children }) => {
         const email = error.customData.email;
         // The AuthCredential type that was used.
         const credential = GithubAuthProvider.credentialFromError(error);
+        toast.error(errorMessage, {
+          position: "bottom-right", // Adjust position as needed
+        });
         // ...
       });
   };
@@ -101,6 +126,11 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     setLoading(false);
     console.log("Logout Executed");
+    toast.success("Successfully logged out from this device!", {
+      position: "bottom-right", // Adjust position as needed
+      autoClose: 5000, // Close after 5 seconds
+      hideProgressBar: false, // Optionally hide progress bar
+    });
     return signOut(auth);
   };
 

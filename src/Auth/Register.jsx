@@ -10,6 +10,7 @@ import { auth } from "../firebase.config";
 const Register = () => {
   const [passError, setPassError] = useState("");
   const [showPass, setShowPass] = useState(true);
+  const [showPassC, setShowPassC] = useState(true);
   const { registerUser } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
@@ -63,7 +64,7 @@ const Register = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>F-Auth - Register</title>
+        <title>Haven Hunt - Register</title>
       </Helmet>
       <div>
         <div className="hero min-h-screen bg-base-200">
@@ -135,6 +136,35 @@ const Register = () => {
                         : "absolute right-4 top-[3.2rem] hover:cursor-pointer select-none"
                     }
                     onClick={() => setShowPass(!showPass)}
+                  />
+                </div>
+
+                <div className="form-control relative">
+                  <label className="label">
+                    <span className="label-text">Confirm Password</span>
+                  </label>
+                  <input
+                    type={showPassC ? "password" : "text"}
+                    name="confirmPassword"
+                    placeholder="Password"
+                    className="input input-bordered"
+                    required
+                  />
+                  <FaRegEye
+                    className={
+                      showPassC
+                        ? "absolute right-4 top-[3.2rem] hover:cursor-pointer select-none"
+                        : "hidden"
+                    }
+                    onClick={() => setShowPassC(!showPassC)}
+                  />
+                  <FaRegEyeSlash
+                    className={
+                      showPassC
+                        ? "hidden"
+                        : "absolute right-4 top-[3.2rem] hover:cursor-pointer select-none"
+                    }
+                    onClick={() => setShowPassC(!showPassC)}
                   />
                 </div>
                 <div

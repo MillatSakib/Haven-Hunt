@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import LoginNav from "./LoginNav";
 import LogoutNav from "./LogoutNav";
-// import { AuthContext } from "../AuthProvider";
+import { AuthContext } from "../AuthProvider";
 
 const Nav = () => {
-  // const { logOut, user } = useContext(AuthContext);
-  let logOut, user;
+  const { user } = useContext(AuthContext);
+  // let logOut, user;
   console.log(user?.photoURL);
   return (
     <div>
@@ -38,12 +38,12 @@ const Nav = () => {
                   Home
                 </NavLink>
               </li>
-              <li>
+              <li className={user ? "" : "hidden"}>
                 <NavLink to="/update_profile" className="font-semibold">
                   Update Profile
                 </NavLink>
               </li>
-              <li>
+              <li className={user ? "" : "hidden"}>
                 <NavLink to="/cart_estate" className="font-semibold">
                   Cart Estate
                 </NavLink>
@@ -59,19 +59,19 @@ const Nav = () => {
           </NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 gap-3">
             <li>
               <NavLink to="/" className="font-semibold">
                 Home
               </NavLink>
             </li>
-            <li>
+            <li className={user ? "" : "hidden"}>
               <NavLink to="/update_profile" className="font-semibold">
                 Update Profile
               </NavLink>
             </li>
 
-            <li>
+            <li className={user ? "" : "hidden"}>
               <NavLink to="/cart_estate" className="font-semibold">
                 Cart Estate
               </NavLink>

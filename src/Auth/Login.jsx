@@ -56,7 +56,7 @@ const Login = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>F-Auth - Login</title>
+        <title>Haven Hunt - Login</title>
       </Helmet>
       <div>
         <div className="hero min-h-screen bg-base-200">
