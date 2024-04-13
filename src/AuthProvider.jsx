@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [githubUsr, setGithUser] = useState({});
+  const [routeState, setRouteState] = useState("/");
   // const [previousPath, setpreviousPath] = useState("");
   // console.log(children);
   const registerUser = (email, password) => {
@@ -143,6 +144,8 @@ const AuthProvider = ({ children }) => {
     setUser,
     GoogleSignIn,
     githubSignIn,
+    routeState,
+    setRouteState,
   };
 
   useEffect(() => {

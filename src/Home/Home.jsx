@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { AuthContext } from "../AuthProvider";
 
 function Home() {
+  const { routeState } = useContext(AuthContext);
+  // console.log(routeState);
   return (
     <HelmetProvider>
       <Helmet>

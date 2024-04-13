@@ -4,12 +4,14 @@ import { AuthContext } from "../AuthProvider";
 import { ToastContainer } from "react-toastify";
 
 const LogoutNav = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   return (
     <div>
       <NavLink
         to="/login"
-        className={user ? "hidden" : "btn btn-success text-white"}
+        className={
+          user ? "hidden" : loading ? "hidden" : "btn btn-success text-white"
+        }
       >
         Login
       </NavLink>

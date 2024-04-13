@@ -5,7 +5,7 @@ import LogoutNav from "./LogoutNav";
 import { AuthContext } from "../AuthProvider";
 
 const Nav = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setRouteState } = useContext(AuthContext);
   // let logOut, user;
   console.log(user?.photoURL);
   return (
@@ -34,17 +34,29 @@ const Nav = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <NavLink to="/" className="font-semibold">
+                <NavLink
+                  to="/"
+                  className="font-semibold"
+                  onClick={() => setRouteState("/")}
+                >
                   Home
                 </NavLink>
               </li>
               <li className={user ? "" : "hidden"}>
-                <NavLink to="/update_profile" className="font-semibold">
+                <NavLink
+                  to="/update_profile"
+                  className="font-semibold"
+                  onClick={() => setRouteState("/update_profile")}
+                >
                   Update Profile
                 </NavLink>
               </li>
               <li className={user ? "" : "hidden"}>
-                <NavLink to="/cart_estate" className="font-semibold">
+                <NavLink
+                  to="/cart_estate"
+                  className="font-semibold"
+                  onClick={() => setRouteState("/cart_estate")}
+                >
                   Cart Estate
                 </NavLink>
               </li>
@@ -61,18 +73,30 @@ const Nav = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-3">
             <li>
-              <NavLink to="/" className="font-semibold">
+              <NavLink
+                to="/"
+                className="font-semibold"
+                onClick={() => setRouteState("/")}
+              >
                 Home
               </NavLink>
             </li>
             <li className={user ? "" : "hidden"}>
-              <NavLink to="/update_profile" className="font-semibold">
+              <NavLink
+                to="/update_profile"
+                className="font-semibold"
+                onClick={() => setRouteState("/update_profile")}
+              >
                 Update Profile
               </NavLink>
             </li>
 
             <li className={user ? "" : "hidden"}>
-              <NavLink to="/cart_estate" className="font-semibold">
+              <NavLink
+                to="/cart_estate"
+                className="font-semibold"
+                onClick={() => setRouteState("/cart_estate")}
+              >
                 Cart Estate
               </NavLink>
             </li>
