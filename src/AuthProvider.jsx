@@ -28,16 +28,25 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUserProfile = () => {
+  const updateUserProfile = (name, imgUrl) => {
     updateProfile(auth.currentUser, {
-      displayName: "Jane Q. User",
-      photoURL: "https://example.com/jane-q-user/profile.jpg",
+      displayName: name,
+      photoURL: imgUrl,
     })
       .then(() => {
         // Profile updated!
         // ...
+        toast.success("User Profile updated successfully", {
+          position: "bottom-right", // Adjust position as needed
+          autoClose: 5000, // Close after 5 seconds
+          hideProgressBar: false, // Optionally hide progress bar
+        });
       })
       .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage, {
+          position: "bottom-right", // Adjust position as needed
+        });
         // An error occurred
         // ...
       });
@@ -58,8 +67,9 @@ const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
+
         console.log(errorCode, errorMessage);
+        const errorMessage = error.message;
         toast.error(errorMessage, {
           position: "bottom-right", // Adjust position as needed
         });
@@ -81,6 +91,7 @@ const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         console.log("error", error.message);
+        const errorMessage = error.message;
         toast.error(errorMessage, {
           position: "bottom-right", // Adjust position as needed
         });
@@ -146,6 +157,7 @@ const AuthProvider = ({ children }) => {
     githubSignIn,
     routeState,
     setRouteState,
+    updateUserProfile,
   };
 
   useEffect(() => {
