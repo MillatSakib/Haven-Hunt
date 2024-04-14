@@ -20,6 +20,10 @@ const PublicRotes = () => {
       children: [
         {
           path: "/",
+          loader: () =>
+            fetch(
+              `https://millatsakib.github.io/img-src/assignment%209/Data/assignment9.json`
+            ),
           element: <Home></Home>,
         },
         {
