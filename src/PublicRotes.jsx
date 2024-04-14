@@ -9,6 +9,7 @@ import Login from "./Auth/Login.jsx";
 import Register from "./Auth/Register.jsx";
 import PrivateRoutes from "./PrivateRoutes/MainPrivateRoutes.jsx";
 import AuthPrivateRoute from "./PrivateRoutes/AuthPrivateRoute.jsx";
+import ViewDetails from "./ViewDetails/ViewDetails.jsx";
 
 const PublicRotes = () => {
   const routes = createBrowserRouter([
@@ -52,6 +53,14 @@ const PublicRotes = () => {
               <Register></Register>
             </AuthPrivateRoute>
           ),
+        },
+        {
+          path: "/property/:propertyID",
+          element: <ViewDetails></ViewDetails>,
+          loader: ({ params }) =>
+            fetch(
+              `https://millatsakib.github.io/img-src/assignment%209/Data/00${params.propertyID}.json`
+            ),
         },
       ],
     },
