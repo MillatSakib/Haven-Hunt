@@ -39,18 +39,34 @@ const VeiwCard = ({ cardData }) => {
       </div>
       <div className="flex gap-2 items-center flex-wrap mx-3 my-4">
         Facilities:
-        <span className="border-2 border-orange-300 px-2 py-1 rounded-full">
-          Bedroom
-        </span>
-        <span className="border-2 border-blue-300 px-2 py-1 rounded-full">
-          Washroom
-        </span>
-        <span className="border-2 border-black-300 px-2 py-1 rounded-full">
-          Swiming Pool
-        </span>
-        <span className="border-2 border-red-300 px-2 py-1 rounded-full">
-          Bedroom
-        </span>
+        {cardData.facilities[3] === 0 ? (
+          ""
+        ) : (
+          <span className="border-2 border-orange-300 px-2 py-1 rounded-full">
+            Bedroom
+          </span>
+        )}
+        {cardData.facilities[0] === 0 ? (
+          ""
+        ) : (
+          <span className="border-2 border-blue-300 px-2 py-1 rounded-full">
+            Bathrom
+          </span>
+        )}
+        {cardData.facilities[2] === 0 ? (
+          ""
+        ) : (
+          <span className="border-2 border-red-300 px-2 py-1 rounded-full">
+            Garages
+          </span>
+        )}
+        {cardData.facilities[1] === 0 ? (
+          ""
+        ) : (
+          <span className="border-2 border-black-300 px-2 py-1 rounded-full">
+            Swiming Pool
+          </span>
+        )}
       </div>
       <div className="mx-4 mt-4 mb-6">
         <NavLink
