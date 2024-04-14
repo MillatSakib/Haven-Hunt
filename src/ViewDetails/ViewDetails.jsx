@@ -14,10 +14,40 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { useLoaderData } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const ViewDetails = () => {
   const viewDeta = useLoaderData();
-  console.log(viewDeta);
+
+  const handelReadBook = () => {
+    const alreadyAdded = () =>
+      toast.error("You have already added this Property");
+    const added = () => toast("Added property in cart");
+
+    let setLocalData = [viewDeta];
+    // console.log(setLocalData);
+    let avialablityCartProperty = String(localStorage.getItem("cartProperty"));
+    const stringData = JSON.stringify([setLocalData]);
+    if (avialablityCartProperty === "null") {
+      localStorage.setItem("cartProperty", stringData);
+
+      added();
+    } else {
+      avialablityCartProperty = JSON.parse(
+        localStorage.getItem("cartProperty")
+      ).find((localData) => localData[0].id === setLocalData[0].id);
+
+      if (avialablityCartProperty) {
+        alreadyAdded();
+      } else {
+        let temp = JSON.parse(localStorage.getItem("cartProperty"));
+        temp.push(setLocalData);
+        localStorage.setItem("cartProperty", JSON.stringify(temp));
+        added();
+      }
+    }
+  };
+
   return (
     <div className="w-[95%] md:w-[90%] lg:w-[80%] lg:max-w-[1250px] mx-auto bg-white">
       <div className="flex my-8 gap-4">
@@ -172,10 +202,15 @@ const ViewDetails = () => {
         </div>
       </div>
       <div className="mt-4 mb-16 text-right">
-        <button type="button" className="btn btn-primary text-white px-10">
+        <button
+          type="button"
+          className="btn btn-primary text-white px-10"
+          onClick={handelReadBook}
+        >
           Add cart now
         </button>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

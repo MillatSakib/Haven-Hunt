@@ -2,10 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const VeiwCard = ({ cardData }) => {
-  console.log(cardData);
   const descirption = cardData.short_description.substring(0, 300) + "  .....";
   const IdNumber = Number(cardData.id);
-  console.log(IdNumber);
   return (
     <div className="hover:shadow-2xl border-2 rounded-lg">
       <div className="relative rounded-lg m-2">
