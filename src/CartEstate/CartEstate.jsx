@@ -1,13 +1,16 @@
 import React from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import NoData from "./NoData";
+import AllCards from "./AllCards";
 
 const CartEstate = () => {
+  let temp = JSON.parse(localStorage.getItem("cartProperty"));
   return (
     <HelmetProvider>
       <Helmet>
         <title>Haven Hunt - Cart</title>
       </Helmet>
-      <div>This is /cart_estate</div>
+      <div>{temp ? <AllCards></AllCards> : <NoData></NoData>}</div>
     </HelmetProvider>
   );
 };
