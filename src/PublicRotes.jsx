@@ -56,7 +56,11 @@ const PublicRotes = () => {
         },
         {
           path: "/property/:propertyID",
-          element: <ViewDetails></ViewDetails>,
+          element: (
+            <PrivateRoutes>
+              <ViewDetails></ViewDetails>
+            </PrivateRoutes>
+          ),
           loader: ({ params }) =>
             fetch(
               `https://millatsakib.github.io/img-src/assignment%209/Data/00${params.propertyID}.json`

@@ -16,20 +16,22 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { useLoaderData } from "react-router-dom";
 
 const ViewDetails = () => {
-  const viewDet = useLoaderData();
-  console.log(viewDet);
+  const viewDeta = useLoaderData();
+  console.log(viewDeta);
   return (
-    <div className="w-[95%] md:w-[90%] lg:w-[80%] lg:max-w-[1450px] mx-auto bg-white">
+    <div className="w-[95%] md:w-[90%] lg:w-[80%] lg:max-w-[1250px] mx-auto bg-white">
       <div className="flex my-8 gap-4">
         <div>
-          <div className="py-1 px-4 mt-1 bg-blue-400 text-white">Rent</div>
+          <div className="py-1 px-4 mt-1 bg-blue-400 text-white rounded-md">
+            {viewDeta.status}
+          </div>
         </div>
 
         <div>
           <div className="font-semibold text-3xl md:text-4xl lg:text-5xl text-slate-600">
-            999 Hamilton Dr 999a, Homestead FL
+            {viewDeta.title}, {viewDeta.location}
           </div>
-          <div className="text-slate-500">Property ID: 003</div>
+          <div className="text-slate-500">Property ID: {viewDeta.id}</div>
         </div>
       </div>
       <div className="my-4">
@@ -49,98 +51,102 @@ const ViewDetails = () => {
           className="mySwiper w-full"
         >
           <SwiperSlide>
-            <img
-              src="https://ornate-moonbeam-6afef4.netlify.app/apparment-1/1.jpg"
-              alt=""
-            />
+            <img src={viewDeta.image[0]} alt="" />
           </SwiperSlide>
           <SwiperSlide>
-            <img
-              src="https://ornate-moonbeam-6afef4.netlify.app/apparment-1/2.jpg"
-              alt=""
-            />
+            <img src={viewDeta.image[1]} alt="" />
           </SwiperSlide>
           <SwiperSlide>
-            <img
-              src="https://ornate-moonbeam-6afef4.netlify.app/apparment-1/3.jpg"
-              alt=""
-            />
+            <img src={viewDeta.image[2]} alt="" />
           </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="https://ornate-moonbeam-6afef4.netlify.app/apparment-1/4.jpg"
-              alt=""
-            />
-          </SwiperSlide>
+          {viewDeta.image[3] ? (
+            <SwiperSlide>
+              <img src={viewDeta.image[3]} alt="" />
+            </SwiperSlide>
+          ) : (
+            ""
+          )}
         </Swiper>
       </div>
       <div className="my-4 flex justify-between flex-col md:flex-row">
         <div className="flex items-center gap-4 md:gap-8">
-          <span className="text-blue-600 font-bold">1195 Sq Ft</span>
+          <span className="text-blue-600 font-bold">
+            {" "}
+            {viewDeta.area} Sq Ft
+          </span>
           <span className="flex items-center gap-1">
             <span className="text-slate-600">
               <FaBed />
             </span>
-            <span className="font-semibold">3 Bedromms</span>
+            <span className="font-semibold">
+              {viewDeta.facilities[3]} Bedromms
+            </span>
           </span>
           <span className="flex items-center gap-1">
             <span className="text-slate-600">
               <FaBath />
             </span>
-            <span className="font-semibold">3 BathRoorm</span>
+            <span className="font-semibold">
+              {viewDeta.facilities[0]} BathRoorm
+            </span>
           </span>
           <span className="flex items-center gap-1">
             <span className="text-slate-600">
               <BiSolidCarGarage />
             </span>
-            <span className="font-semibold">1 Garages</span>
+            <span className="font-semibold">
+              {viewDeta.facilities[2]} Garages
+            </span>
           </span>
           <span className="flex items-center gap-1">
             <span className="text-slate-600">
               <FaSwimmingPool />
             </span>
-            <span className="font-semibold">1 Swiming Pool</span>
+            <span className="font-semibold">
+              {viewDeta.facilities[1]} Swiming Pool
+            </span>
           </span>
         </div>
         <div className="font-bold text-blue-500 text-xl md:text-2xl">
-          $<span>697</span>
-          <span>/per month</span>
+          $<span>{viewDeta.price} </span>
+          {viewDeta.status === "sale" ? (
+            <span>(Fixed Rate)</span>
+          ) : (
+            <span>/per month</span>
+          )}
         </div>
       </div>
       <div className="lora-400 my-8">
         <div className="my-8 text-2xl md:text-3xl font-bold text-slate-700">
           Description
         </div>
-        <div className="text-xl text-slate-600">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-          laborum voluptatem quas quis quidem sapiente aliquam dignissimos earum
-          ipsum accusantium ea neque autem, accusamus impedit minus. Harum
-          aliquid atque nemo impedit vel, repellendus soluta tempora odit optio
-          expedita. Sequi delectus tempora ab ut nisi. Voluptate vero temporibus
-          provident praesentium esse totam beatae doloribus et amet fuga,
-          necessitatibus recusandae quisquam officiis dolore veritatis. Mollitia
-          blanditiis excepturi neque odio aut optio tempora.
+        <div className="text-[1rem] text-slate-600">
+          {viewDeta.short_description}
         </div>
       </div>
       <div>
         <div className="my-8 text-2xl md:text-3xl font-bold text-slate-700">
           Additional Details
         </div>
-        <ul className="text-[1rem] text-slate-600 list-disc">
+        <ul className="text-[.8rem] text-slate-600 list-disc">
           <li className="border-b-2 border-t-2 pb-2 pt-6">
-            <span className="font-bold text-slate-800">Area:</span> 2.5 ACRES
+            <span className="font-bold text-slate-800">Area: </span>
+            {viewDeta.acres} ACRES
           </li>
           <li className="border-b-2 py-2">
-            <span className="font-bold text-slate-800">Type:</span> Luxury
-            Apartments
+            <span className="font-bold text-slate-800">Type: </span>
+            {viewDeta.title}
           </li>
           <li className="border-b-2 py-2">
             <span className="font-bold text-slate-800">Cooling:</span>{" "}
-            Fan(Central of Room) Ac
+            {viewDeta.availability.fan ? "Fan(Central of Room)" : ""}{" "}
+            {viewDeta.availability.ac ? ", AC" : ""}
           </li>
           <li className="border-b-2 py-2">
             <span className="font-bold text-slate-800">Availavle Fan on:</span>{" "}
-            Dining Room
+            {viewDeta.availability.location
+              ? viewDeta.availability.location
+              : ""}{" "}
           </li>
           <li className="border-b-2 py-2">
             <span className="font-bold text-slate-800">Dining Area:</span>{" "}
@@ -148,15 +154,27 @@ const ViewDetails = () => {
           </li>
           <li className="border-b-2 py-2">
             <span className="font-bold text-slate-800">Area Source:</span>{" "}
-            Survey
+            {viewDeta.area_source}
           </li>
         </ul>
       </div>
       <div className="my-10">
         <div className="my-8 text-2xl md:text-3xl font-bold text-slate-700">
-          Property Map
+          Nearby Place
         </div>
-        <div className="h-[700px]"></div>
+        <div className="flex justify-around border-2 rounded-lg py-2 px-8 border-blue-200">
+          <div className="text-blue-700 font-semibold">
+            Market: {viewDeta.distance_from_market} KM
+          </div>
+          <div className="text-blue-700 font-semibold">
+            School: {viewDeta.distance_from_schools} Km{" "}
+          </div>
+        </div>
+      </div>
+      <div className="mt-4 mb-16 text-right">
+        <button type="button" className="btn btn-primary text-white px-10">
+          Add cart now
+        </button>
       </div>
     </div>
   );

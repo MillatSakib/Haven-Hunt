@@ -5,7 +5,7 @@ import Nav from "./Nav/Nav";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-[100vh] justify-between">
+    <div className="flex flex-col min-h-[100vh] justify-between bg-white">
       <Nav> </Nav>
       <Outlet></Outlet>
       <Footer></Footer>
