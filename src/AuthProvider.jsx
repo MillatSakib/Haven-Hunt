@@ -13,7 +13,6 @@ import {
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
 import { useAsyncError } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
 
 export const AuthContext = createContext(null);
 
@@ -22,6 +21,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [githubUsr, setGithUser] = useState({});
   const [routeState, setRouteState] = useState("/");
+  const [componentRender, setComponentRender] = useState(false);
   // const [previousPath, setpreviousPath] = useState("");
   // console.log(children);
   const registerUser = (email, password) => {
@@ -36,6 +36,8 @@ const AuthProvider = ({ children }) => {
       .then(() => {
         // Profile updated!
         // ...
+        let temp = componentRender;
+        setComponentRender(!temp);
         toast.success("User Profile updated successfully", {
           position: "bottom-right", // Adjust position as needed
           autoClose: 5000, // Close after 5 seconds
@@ -158,6 +160,7 @@ const AuthProvider = ({ children }) => {
     routeState,
     setRouteState,
     updateUserProfile,
+    setComponentRender,
   };
 
   useEffect(() => {
@@ -178,7 +181,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [componentRender]);
 
   return (
     <div>

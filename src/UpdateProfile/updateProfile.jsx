@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { ToastContainer } from "react-toastify";
+
 import { AuthContext } from "../AuthProvider";
 
 const UpdateProfile = () => {
-  const { updateUserProfile } = useContext(AuthContext);
+  const { updateUserProfile, user } = useContext(AuthContext);
   function handleUpdate(e) {
     e.preventDefault();
     const name = e.target.name.value;
@@ -34,7 +34,21 @@ const UpdateProfile = () => {
                 type="text"
                 placeholder="Name"
                 className="input input-bordered"
+                defaultValue={user.displayName}
                 required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                className="input input-bordered"
+                defaultValue={user.email}
+                disabled
               />
             </div>
             <div className="form-control">
@@ -46,6 +60,7 @@ const UpdateProfile = () => {
                 type="text"
                 placeholder="Image URL"
                 className="input input-bordered"
+                defaultValue={user.photoURL}
                 required
               />
             </div>
@@ -54,7 +69,6 @@ const UpdateProfile = () => {
             </div>
           </form>
         </div>
-        <ToastContainer></ToastContainer>
       </div>
     </HelmetProvider>
   );

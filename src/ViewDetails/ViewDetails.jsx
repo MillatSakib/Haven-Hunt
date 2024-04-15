@@ -14,7 +14,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { useLoaderData } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const ViewDetails = () => {
   const viewDeta = useLoaderData();
@@ -210,7 +210,6 @@ const ViewDetails = () => {
           Add cart now
         </button>
       </div>
-      <ToastContainer></ToastContainer>
     </div>
   );
 };
