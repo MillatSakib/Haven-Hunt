@@ -7,7 +7,7 @@ import { AuthContext } from "../AuthProvider";
 const Nav = () => {
   const { user, setRouteState } = useContext(AuthContext);
   // let logOut, user;
-  console.log(user?.photoURL);
+  // console.log(user?.photoURL);
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -31,7 +31,7 @@ const Nav = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
                 <NavLink
