@@ -8,51 +8,29 @@ import { AuthContext } from "../AuthProvider";
 const Login = () => {
   const [passError, setPassError] = useState("");
   const [showPass, setShowPass] = useState(true);
-  // const logInUser = {};
-  // const GoogleSignIn = {};
-  // const githubSignIn = {};
   const { logInUser, GoogleSignIn, user, githubSignIn } =
     useContext(AuthContext);
-  // const location = useLocation();
-  // console.log(location);
-  // const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    if (password.length < 6) {
+      setPassError("Password must be at least 6 characters long.");
+      return;
+    }
     if (!/[A-Z]/.test(password)) {
-      // console.log("There have at least one uppercase!");
       setPassError("There have at least one uppercase!");
 
       return;
     }
     if (!/[a-z]/.test(password)) {
-      // console.log("There have at least one lowercase!");
       setPassError("There have at least one lowercase!");
-      return;
-    }
-    if (!/.*\d{2,}$/.test(password)) {
-      // console.log("There have at least two digit at last");
-      setPassError("There have at least two digit at last");
       return;
     }
     setPassError("");
     logInUser(email, password);
-    //       .then((result) => {
-    //         console.log(result);
-    //         e.target.reset();
-    //         navigate("/");
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
   };
-  // useEffect(() => {
-  //   if (user) {
-  //     navigate(location.state);
-  //   }
-  // }, [user]);
+
   return (
     <HelmetProvider>
       <Helmet>

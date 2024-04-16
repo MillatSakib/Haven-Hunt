@@ -8,14 +8,7 @@ import { useLoaderData } from "react-router-dom";
 function Home() {
   const { routeState } = useContext(AuthContext);
   const estateData = useLoaderData();
-  console.log(estateData);
-  // console.log(routeState);
-  // console.log(import.meta.env.VITE_API_KEY);
-  // console.log(import.meta.env.VITE_AUTH_DOMAIN);
-  // console.log(import.meta.env.VITE_PROJECT_ID);
-  // console.log(import.meta.env.VITE_STORAGE_BUCKET);
-  // console.log(import.meta.env.VITE_MESSAGING_SENDER_ID);
-  // console.log(import.meta.env.VITE_APP_ID);
+
   return (
     <HelmetProvider>
       <Helmet>

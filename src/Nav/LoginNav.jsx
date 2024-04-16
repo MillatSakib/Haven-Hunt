@@ -3,8 +3,6 @@ import { AuthContext } from "../AuthProvider";
 
 const LoginNav = () => {
   const { user, logOut } = useContext(AuthContext);
-  // console.log(user);
-
   return (
     <div className={user ? "flex items-center gap-2" : "hidden"}>
       <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
@@ -18,7 +16,6 @@ const LoginNav = () => {
                     : "https://millatsakib.github.io/Project-Resource/%E2%80%94Pngtree%E2%80%94cartoon%20color%20simple%20male%20avatar_5230557.png"
                 }
               />
-              {/* <div>{user?.photoURL}</div> */}
             </div>
           </div>
         </div>
@@ -29,7 +26,6 @@ const LoginNav = () => {
           <li className="px-4 py-2">
             {user?.displayName ? user.displayName : "No data found."}
           </li>
-          {/* <li className="px-4 py-2">millatsakib01@gmail.com</li> */}
         </ul>
       </div>
       <button className="btn btn-error text-white" onClick={logOut}>

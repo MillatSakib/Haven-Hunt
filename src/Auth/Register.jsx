@@ -18,21 +18,17 @@ const Register = () => {
     const imgUrl = e.target.imgUrl.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(name, email, password);
+    if (password.length < 6) {
+      setPassError("Password must be at least 6 characters long.");
+      return;
+    }
     if (!/[A-Z]/.test(password)) {
-      // console.log("There have at least one uppercase!");
       setPassError("There have at least one uppercase!");
 
       return;
     }
     if (!/[a-z]/.test(password)) {
-      // console.log("There have at least one lowercase!");
       setPassError("There have at least one lowercase!");
-      return;
-    }
-    if (!/.*\d{2,}$/.test(password)) {
-      // console.log("There have at least two digit at last");
-      setPassError("There have at least two digit at last");
       return;
     }
     setPassError("");
@@ -43,23 +39,9 @@ const Register = () => {
         displayName: name,
         photoURL: imgUrl,
       })
-        .then(() => {
-          // Profile updated!
-          // ...
-        })
-        .catch((error) => {
-          // An error occurred
-          // ...
-        });
-      console.log(user);
-      // setUseEffectRunner(!useEffectRunner);
+        .then(() => {})
+        .catch((error) => {});
     });
-    // .then((result) => {
-    //   console.log(result);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
   };
   return (
     <HelmetProvider>

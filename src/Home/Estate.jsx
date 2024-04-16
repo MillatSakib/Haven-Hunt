@@ -1,6 +1,4 @@
 import React from "react";
-// import EstateCard from "./EstateCard";
-import SwipeBanner from "./SwipeBanner";
 import VeiwCard from "./VeiwCard";
 
 const Estate = ({ estateData }) => {

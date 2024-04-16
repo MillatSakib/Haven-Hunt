@@ -6,8 +6,6 @@ import { AuthContext } from "../AuthProvider";
 
 const Nav = () => {
   const { user, setRouteState } = useContext(AuthContext);
-  // let logOut, user;
-  // console.log(user?.photoURL);
   return (
     <div>
       <div className="navbar bg-base-100">

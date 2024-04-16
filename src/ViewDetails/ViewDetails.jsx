@@ -1,36 +1,29 @@
 import React from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FaBed } from "react-icons/fa";
 import { FaBath } from "react-icons/fa";
 import { BiSolidCarGarage } from "react-icons/bi";
 import { FaSwimmingPool } from "react-icons/fa";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
 const ViewDetails = () => {
   const viewDeta = useLoaderData();
-
   const handelReadBook = () => {
     const alreadyAdded = () =>
       toast.error("You have already added this Property");
     const added = () => toast("Added property in cart");
-
     let setLocalData = [viewDeta];
-    // console.log(setLocalData);
     let avialablityCartProperty = String(localStorage.getItem("cartProperty"));
     const stringData = JSON.stringify([setLocalData]);
     if (avialablityCartProperty === "null") {
       localStorage.setItem("cartProperty", stringData);
-
       added();
     } else {
       avialablityCartProperty = JSON.parse(
@@ -188,6 +181,31 @@ const ViewDetails = () => {
           </li>
         </ul>
       </div>
+
+      <div className="my-10">
+        <div className="my-8 text-2xl md:text-3xl font-bold text-slate-700">
+          Veiw Your Property Location
+        </div>
+        <MapContainer
+          center={[viewDeta.latitude, viewDeta.longitude]}
+          zoom={17}
+          scrollWheelZoom={false}
+          style={{
+            height: "400px",
+            width: "80%",
+            margin: "10px auto 12px auto",
+          }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={[viewDeta.latitude, viewDeta.longitude]}>
+            <Popup>{viewDeta.segment_name}</Popup>
+          </Marker>
+        </MapContainer>
+      </div>
+
       <div className="my-10">
         <div className="my-8 text-2xl md:text-3xl font-bold text-slate-700">
           Nearby Place

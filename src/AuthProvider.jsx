@@ -19,11 +19,8 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [githubUsr, setGithUser] = useState({});
   const [routeState, setRouteState] = useState("/");
   const [componentRender, setComponentRender] = useState(false);
-  // const [previousPath, setpreviousPath] = useState("");
-  // console.log(children);
   const registerUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -34,46 +31,39 @@ const AuthProvider = ({ children }) => {
       photoURL: imgUrl,
     })
       .then(() => {
-        // Profile updated!
-        // ...
         let temp = componentRender;
         setComponentRender(!temp);
         toast.success("User Profile updated successfully", {
-          position: "bottom-right", // Adjust position as needed
-          autoClose: 5000, // Close after 5 seconds
-          hideProgressBar: false, // Optionally hide progress bar
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
         });
       })
       .catch((error) => {
         const errorMessage = error.message;
         toast.error(errorMessage, {
-          position: "bottom-right", // Adjust position as needed
+          position: "bottom-right",
         });
-        // An error occurred
-        // ...
       });
   };
 
   const logInUser = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        // ...
-        console.log(user);
+
         toast.success("Successfully logged in!", {
-          position: "bottom-right", // Adjust position as needed
-          autoClose: 5000, // Close after 5 seconds
-          hideProgressBar: false, // Optionally hide progress bar
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
         });
       })
       .catch((error) => {
         const errorCode = error.code;
 
-        console.log(errorCode, errorMessage);
         const errorMessage = error.message;
         toast.error(errorMessage, {
-          position: "bottom-right", // Adjust position as needed
+          position: "bottom-right",
         });
       });
   };
@@ -84,66 +74,51 @@ const AuthProvider = ({ children }) => {
       .then((result) => {
         const loginUser = result.user;
         setUser(loginUser);
-        console.log(loginUser);
         toast.success("Successfully logged in!", {
-          position: "bottom-right", // Adjust position as needed
-          autoClose: 5000, // Close after 5 seconds
-          hideProgressBar: false, // Optionally hide progress bar
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
         });
       })
       .catch((error) => {
-        console.log("error", error.message);
         const errorMessage = error.message;
         toast.error(errorMessage, {
-          position: "bottom-right", // Adjust position as needed
+          position: "bottom-right",
         });
       });
   };
 
   const githubProvider = new GithubAuthProvider();
-
   const githubSignIn = () => {
-    console.log("clicked");
     signInWithPopup(auth, githubProvider)
       .then((result) => {
-        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
         const credential = GithubAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-
-        // The signed-in user info.
         const githubuser = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
         setUser(githubuser);
         toast.success("Successfully logged in!", {
-          position: "bottom-right", // Adjust position as needed
-          autoClose: 5000, // Close after 5 seconds
-          hideProgressBar: false, // Optionally hide progress bar
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
         });
-        // console.log(githubUsr);
-        // ...
       })
       .catch((error) => {
-        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
         const email = error.customData.email;
-        // The AuthCredential type that was used.
         const credential = GithubAuthProvider.credentialFromError(error);
         toast.error(errorMessage, {
-          position: "bottom-right", // Adjust position as needed
+          position: "bottom-right",
         });
-        // ...
       });
   };
 
   const logOut = () => {
     setLoading(false);
-    console.log("Logout Executed");
     toast.success("Successfully logged out from this device!", {
-      position: "bottom-right", // Adjust position as needed
-      autoClose: 5000, // Close after 5 seconds
-      hideProgressBar: false, // Optionally hide progress bar
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
     });
     return signOut(auth);
   };
@@ -166,13 +141,9 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        // console.log(currentUser);
         setUser(currentUser);
         setLoading(false);
-
-        // console.log("Loading is now ", loading);
       } else {
-        // console.log("No user!!!");
         setLoading(false);
         setUser(null);
       }
