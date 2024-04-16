@@ -18,8 +18,14 @@ const Register = () => {
     const imgUrl = e.target.imgUrl.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
+
+    if (password !== confirmPassword) {
+      setPassError("Password & Confirm Password are not same!!!");
+      return;
+    }
     if (password.length < 6) {
-      setPassError("Password must be at least 6 characters long.");
+      setPassError("Password must be at least 6 characters long!!!");
       return;
     }
     if (!/[A-Z]/.test(password)) {
