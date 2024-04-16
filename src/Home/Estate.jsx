@@ -6,10 +6,20 @@ import VeiwCard from "./VeiwCard";
 const Estate = ({ estateData }) => {
   return (
     <div>
-      <div className="text-2xl md:text-3xl lg:text-4xl text-center font-bold mt-10 mb-8">
+      <div
+        className="text-2xl md:text-3xl lg:text-4xl text-center font-bold mt-10 mb-8"
+        data-aos="fade-right"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine"
+      >
         Choose the Best
       </div>
-      <div className="w-[95%] md:w-[80%] lg:w-[65%] text-center mx-auto text-slate-600 mb-10">
+      <div
+        className="w-[95%] md:w-[80%] lg:w-[65%] text-center mx-auto text-slate-600 mb-10"
+        data-aos="fade-left"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine"
+      >
         Find your perfect fit! Narrow your search by selecting a community that
         matches your lifestyle. Explore vibrant downtown areas, peaceful
         suburbs, or scenic lakefront neighborhoods. We offer a variety of

@@ -5,7 +5,7 @@ const VeiwCard = ({ cardData }) => {
   const descirption = cardData.short_description.substring(0, 300) + "  .....";
   const IdNumber = Number(cardData.id);
   return (
-    <div className="hover:shadow-2xl border-2 rounded-lg">
+    <div className="hover:shadow-2xl border-2 rounded-lg" data-aos="zoom-in">
       <div className="relative rounded-lg m-2">
         <img src={cardData.image} className="w-full rounded-lg"></img>
         <span className="bg-blue-500 text-white absolute bottom-0 right-0 text-xl px-2 py-1 rounded-tl-md rounded-br-lg">
