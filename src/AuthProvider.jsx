@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [routeState, setRouteState] = useState("/");
   const [componentRender, setComponentRender] = useState(false);
+
   const registerUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -51,7 +52,8 @@ const AuthProvider = ({ children }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-
+        let temp = componentRender;
+        setComponentRender(!temp);
         toast.success("Successfully logged in!", {
           position: "bottom-right",
           autoClose: 5000,
@@ -72,6 +74,8 @@ const AuthProvider = ({ children }) => {
   const GoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
+        let temp = componentRender;
+        setComponentRender(!temp);
         const loginUser = result.user;
         setUser(loginUser);
         toast.success("Successfully logged in!", {
@@ -92,6 +96,8 @@ const AuthProvider = ({ children }) => {
   const githubSignIn = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
+        let temp = componentRender;
+        setComponentRender(!temp);
         const credential = GithubAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const githubuser = result.user;
@@ -115,6 +121,8 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(false);
+    let temp = componentRender;
+    setComponentRender(!temp);
     toast.success("Successfully logged out from this device!", {
       position: "bottom-right",
       autoClose: 5000,
@@ -136,6 +144,7 @@ const AuthProvider = ({ children }) => {
     setRouteState,
     updateUserProfile,
     setComponentRender,
+    componentRender,
   };
 
   useEffect(() => {

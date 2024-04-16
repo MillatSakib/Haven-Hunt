@@ -3,16 +3,20 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="footer p-10 bg-neutral text-neutral-content">
-      <aside>
-        <img
-          src="https://raw.githubusercontent.com/MillatSakib/img-src/main/assignment%209/logo.png"
-          className="h-12"
-        ></img>
-
-        <p>Copyright © 2024 - All right reserved by Haven Hunt</p>
-      </aside>
       <nav>
-        <h6 className="footer-title">Social</h6>
+        <div className="mb-4">
+          <div className="text-xl font-bold text-slate-300 my-2">
+            Contact Us:
+          </div>
+          <div>
+            <p>Email: info@havenhunt.com | Phone: +1 (123) 456-7890</p>
+          </div>
+        </div>
+        <div className="text-xl font-bold text-slate-300">Find Us</div>
+        <div>456 Oak Street, Springfield, IL, 62701, USA</div>
+      </nav>
+      <aside>
+        <h6 className="footer-title">Follow Us:</h6>
         <div className="grid grid-flow-col gap-4">
           <a>
             <svg
@@ -48,7 +52,13 @@ const Footer = () => {
             </svg>
           </a>
         </div>
-      </nav>
+        <img
+          src="https://raw.githubusercontent.com/MillatSakib/img-src/main/assignment%209/logo.png"
+          className="h-12"
+        ></img>
+
+        <p>Copyright © 2024 - All right reserved by Haven Hunt</p>
+      </aside>
     </footer>
   );
 };

@@ -13,6 +13,12 @@ import { toast } from "react-toastify";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
+const customIcon = new L.Icon({
+  iconUrl: "https://millatsakib.github.io/img-src/assignment%209/marker.svg", // Adjust the path if needed
+  iconSize: [40, 41], // Adjust size as desired
+  iconAnchor: [32, -41], // Adjust anchor point if needed
+});
+
 const ViewDetails = () => {
   const viewDeta = useLoaderData();
   const handelReadBook = () => {
@@ -200,7 +206,10 @@ const ViewDetails = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[viewDeta.latitude, viewDeta.longitude]}>
+          <Marker
+            position={[viewDeta.latitude, viewDeta.longitude]}
+            icon={customIcon}
+          >
             <Popup>{viewDeta.segment_name}</Popup>
           </Marker>
         </MapContainer>

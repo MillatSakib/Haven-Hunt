@@ -6,12 +6,14 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../firebase.config";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [passError, setPassError] = useState("");
   const [showPass, setShowPass] = useState(true);
   const [showPassC, setShowPassC] = useState(true);
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser, setComponentRender, componentRender } =
+    useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -38,16 +40,36 @@ const Register = () => {
       return;
     }
     setPassError("");
-    registerUser(email, password).then((userCredential) => {
-      // Signed up
-      const user = userCredential.user;
-      updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL: imgUrl,
+    registerUser(email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: imgUrl,
+        })
+          .then(() => {
+            let temp = componentRender;
+            setComponentRender(!temp);
+            toast.success("Successfully Regitered you account!", {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+            });
+          })
+          .catch((error) => {
+            const errorMessage = error.message;
+            toast.error(errorMessage, {
+              position: "bottom-right",
+            });
+          });
       })
-        .then(() => {})
-        .catch((error) => {});
-    });
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage, {
+          position: "bottom-right",
+        });
+      });
   };
   return (
     <HelmetProvider>

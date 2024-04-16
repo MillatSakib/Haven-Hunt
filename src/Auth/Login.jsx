@@ -92,7 +92,11 @@ const Login = () => {
                   </div>
                 </div>
                 <div className="form-control mt-1">
-                  <input type="submit" className="btn btn-primary"></input>
+                  <input
+                    type="submit"
+                    className="btn btn-primary"
+                    value="Login"
+                  ></input>
                 </div>
                 <p className=" py-4 text-green-600">
                   New in this site?{" "}

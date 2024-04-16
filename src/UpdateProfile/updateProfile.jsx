@@ -65,7 +65,11 @@ const UpdateProfile = () => {
               />
             </div>
             <div className="form-control mt-1">
-              <input type="submit" className="btn btn-primary"></input>
+              <input
+                type="submit"
+                className="btn btn-primary"
+                value="Update"
+              ></input>
             </div>
           </form>
         </div>
